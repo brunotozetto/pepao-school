@@ -72,7 +72,7 @@ public class Principal {
 
 	}
 
-	private static void listaFuncionarioCresc() {
+	/*private static void listaFuncionarioCresc() {
 		Funcionario vCrescente[] = new Funcionario[5];
 		for (int k = 0; k < vFuncionario.length; k++)
 			if (vFuncionario[k] != null)
@@ -82,7 +82,7 @@ public class Principal {
 		
 		for (int k = 0; k < vCrescente.length; k++)
 			System.out.println(vCrescente[k].mostraFuncionario());
-	}
+	}*/
 
 	public static String digita(String msg) {
 		Scanner a = new Scanner(System.in);
