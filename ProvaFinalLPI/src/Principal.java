@@ -28,6 +28,8 @@ public class Principal {
 				listaFuncionarioCresc();
 				break;
 			case "10":
+				System.out.println("... Programa finalizado!");
+				System.exit(0);
 
 			default:
 				System.out.println("Erro! Escolha uma opção válida.");
@@ -72,7 +74,9 @@ public class Principal {
 
 	}
 
-	/*private static void listaFuncionarioCresc() {
+	private static void listaFuncionarioCresc() {
+		System.out.println("Em desenvolvimento!");
+		/*
 		Funcionario vCrescente[] = new Funcionario[5];
 		for (int k = 0; k < vFuncionario.length; k++)
 			if (vFuncionario[k] != null)
@@ -82,11 +86,12 @@ public class Principal {
 		
 		for (int k = 0; k < vCrescente.length; k++)
 			System.out.println(vCrescente[k].mostraFuncionario());
-	}*/
+			*/
+	}
 
 	public static String digita(String msg) {
 		Scanner a = new Scanner(System.in);
-		System.out.println(msg);
+		System.out.print(msg);
 		return a.nextLine();
 	}
 
