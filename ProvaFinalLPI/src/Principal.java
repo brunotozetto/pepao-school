@@ -1,18 +1,21 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+//import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Principal {
 	static int tamanho = 5;
 	static Funcionario vFuncionario[] = new Funcionario[tamanho];
-
 	Funcionario func = new Funcionario();
 
 	public static void main(String[] args) {
+		tamanhoCadastro();
 		while (true) {
 			switch (digita(menu())) {
 			case "1":
-				// tamanhoCadastro();
 				cadastraFuncionario();
 				break;
 			case "2":
@@ -46,6 +49,8 @@ public class Principal {
 	}
 
 	private static void listaFuncionarios() {
+		if (vFuncionario[0] == null)
+			System.out.println("Cadastro vazio.");
 		for (int k = 0; k < vFuncionario.length; k++) {
 			if (vFuncionario[k] != null)
 				System.out.println(vFuncionario[k].mostraFuncionario());
@@ -56,6 +61,7 @@ public class Principal {
 		System.out.println("Digite a quantidade de funcionários: ");
 		int num = new Scanner(System.in).nextInt();
 		tamanho = num;
+		return;
 	}
 
 	private static void cadastraFuncionario() {
@@ -70,23 +76,54 @@ public class Principal {
 	}
 
 	private static void consultarFuncionario() {
-		// TODO Auto-generated method stub
-
+		String nome = digita("Digite o nome do funcionário: ");
+		for (int k = 0; k < vFuncionario.length; k++) {
+			if (vFuncionario[k].getNome().equalsIgnoreCase(nome)) {
+				System.out.println("Nome: " + vFuncionario[k].getNome());
+				System.out.println("Idade: " + vFuncionario[k].getIdade());
+				System.out.println("Situacao: " + vFuncionario[k].getSituacao());
+			}
+		}
 	}
 
 	private static void listaFuncionarioCresc() {
-		System.out.println("Em desenvolvimento!");
-		/*
-		Funcionario vCrescente[] = new Funcionario[5];
-		for (int k = 0; k < vFuncionario.length; k++)
-			if (vFuncionario[k] != null)
-				vCrescente[k] = vFuncionario[k];  
-
-		Arrays.sort(vCrescente);
+		Funcionario[] copiaListaFunc = new Funcionario[tamanho];
+		if (vFuncionario[0] == null)
+			System.out.println("Cadastro vazio.");
 		
-		for (int k = 0; k < vCrescente.length; k++)
-			System.out.println(vCrescente[k].mostraFuncionario());
-			*/
+		for (int i = 0; i < vFuncionario.length; i++) {
+			copiaListaFunc[i] = vFuncionario[i];
+		}
+		
+		
+		for (int i = 0; i < copiaListaFunc.length; i++) {
+			int menorIdadeIndex = 0;
+			boolean trocou = false;
+			try {
+				for (int j = i; j < copiaListaFunc.length; j++) {
+					if (copiaListaFunc[menorIdadeIndex] != null
+							&& copiaListaFunc[menorIdadeIndex].getIdade() > copiaListaFunc[j].getIdade()) {
+						menorIdadeIndex = j;
+						trocou = true;
+					}
+				}
+				if (trocou) {
+					Funcionario funci = copiaListaFunc[i];
+					copiaListaFunc[i] = copiaListaFunc[menorIdadeIndex];
+					copiaListaFunc[menorIdadeIndex] = funci;
+				}
+			} catch (Exception ex) {
+			}
+		}
+
+		for (int i = 0; i < copiaListaFunc.length; i++) {
+			if (copiaListaFunc[i] != null)
+				System.out.println(
+						"Funcionario: " + copiaListaFunc[i].getNome() + "  Idade: " + copiaListaFunc[i].getIdade());
+
+		}
+		//return;
+
 	}
 
 	public static String digita(String msg) {
@@ -106,5 +143,4 @@ public class Principal {
 		menu += "\nSelecione: ";
 		return menu;
 	}
-
 }

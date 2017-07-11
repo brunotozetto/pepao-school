@@ -4,56 +4,64 @@ public class Funcionario {
 	private String nome;
 	private int idade;
 	private String situacao;
-	
-	public Funcionario(){
+
+	public Funcionario() {
 		setNome(digita("Digite o nome: "));
 		setIdade(Integer.parseInt(digita("Digite a idade: ")));
 		setSituacao(lerSituacao());
 	}
-	
+
 	private String lerSituacao() {
 		String sit;
-		System.out.println("Selecione a situação do funcionário:\n1- Ativo\n2 - Inativo");
-		int a = new Scanner(System.in).nextInt();		
+		System.out.println("Selecione a situação do funcionário:\n1 - Ativo\n2 - Inativo");
+		int a = new Scanner(System.in).nextInt();
 		if (a == 1)
 			return sit = "Ativo";
 		return sit = "Inativo";
 	}
 
-	
-	/*public String toString() {
-		return "Funcionario [nome=" + nome + ", idade=" + idade + ", situacao=" + situacao + "]";
-	}*/
-
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
+		if ((nome.length() < 3) || (nome.length() > 30)) {
+			throw new IllegalArgumentException("Nome inválido. Mínimo 3 caracteres, Máximo 30 caracteres.");
+		}
 		this.nome = nome;
 	}
+
 	public int getIdade() {
 		return idade;
 	}
+
 	public void setIdade(int idade) {
+		if ((idade <= 0) || (idade >= 99))
+			throw new IllegalArgumentException("Idade inválida, Minimo 1, máximo 99");
 		this.idade = idade;
 	}
+
 	public String getSituacao() {
 		return situacao;
 	}
+
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	
-	public String mostraFuncionario(){
+
+	public String mostraFuncionario() {
 		return "Nome = " + this.nome + ", Idade = " + this.idade + ", Situação =" + this.situacao;
 	}
-	
+
 	public static String digita(String msg) {
 		Scanner a = new Scanner(System.in);
 		System.out.println(msg);
 		return a.nextLine();
 	}
+<<<<<<< HEAD
 	 
 	
+=======
+>>>>>>> acc77392d98f491324fce706d156bd9da81712ee
 
 }
