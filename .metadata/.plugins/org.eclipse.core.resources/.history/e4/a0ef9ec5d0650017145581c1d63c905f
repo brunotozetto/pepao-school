@@ -49,8 +49,6 @@ public class Principal {
 	}
 
 	private static void listaFuncionarios() {
-		if (vFuncionario[0] == null)
-			System.out.println("Cadastro vazio.");
 		for (int k = 0; k < vFuncionario.length; k++) {
 			if (vFuncionario[k] != null)
 				System.out.println(vFuncionario[k].mostraFuncionario());
@@ -88,42 +86,33 @@ public class Principal {
 
 	private static void listaFuncionarioCresc() {
 		Funcionario[] copiaListaFunc = new Funcionario[tamanho];
-		if (vFuncionario[0] == null)
-			System.out.println("Cadastro vazio.");
-		
 		for (int i = 0; i < vFuncionario.length; i++) {
 			copiaListaFunc[i] = vFuncionario[i];
 		}
-		
-		
 		for (int i = 0; i < copiaListaFunc.length; i++) {
 			int menorIdadeIndex = 0;
 			boolean trocou = false;
-			try {
-				for (int j = i; j < copiaListaFunc.length; j++) {
-					if (copiaListaFunc[menorIdadeIndex] != null
-							&& copiaListaFunc[menorIdadeIndex].getIdade() > copiaListaFunc[j].getIdade()) {
-						menorIdadeIndex = j;
-						trocou = true;
-					}
+			try{
+			for (int j = i; j < copiaListaFunc.length; j++) {
+				if (copiaListaFunc[menorIdadeIndex] != null
+						&& copiaListaFunc[menorIdadeIndex].getIdade() > copiaListaFunc[j].getIdade()) {
+					menorIdadeIndex = j;
+					trocou = true;
 				}
-				if (trocou) {
-					Funcionario funci = copiaListaFunc[i];
-					copiaListaFunc[i] = copiaListaFunc[menorIdadeIndex];
-					copiaListaFunc[menorIdadeIndex] = funci;
-				}
-			} catch (Exception ex) {
 			}
+			if (trocou) {
+				Funcionario bucket = copiaListaFunc[i];
+				copiaListaFunc[i] = copiaListaFunc[menorIdadeIndex];
+				copiaListaFunc[menorIdadeIndex] = bucket;
+			}
+			} catch (Exception ex) { }
 		}
+		
 
 		for (int i = 0; i < copiaListaFunc.length; i++) {
-			if (copiaListaFunc[i] != null)
-				System.out.println(
-						"Funcionario: " + copiaListaFunc[i].getNome() + "  Idade: " + copiaListaFunc[i].getIdade());
-
+			System.out.println(
+					"Funcionario: " + copiaListaFunc[i].getNome() + " / Idade: " + copiaListaFunc[i].getIdade());
 		}
-		//return;
-
 	}
 
 	public static String digita(String msg) {

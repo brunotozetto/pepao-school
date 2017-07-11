@@ -49,8 +49,6 @@ public class Principal {
 	}
 
 	private static void listaFuncionarios() {
-		if (vFuncionario[0] == null)
-			System.out.println("Cadastro vazio.");
 		for (int k = 0; k < vFuncionario.length; k++) {
 			if (vFuncionario[k] != null)
 				System.out.println(vFuncionario[k].mostraFuncionario());

@@ -49,8 +49,6 @@ public class Principal {
 	}
 
 	private static void listaFuncionarios() {
-		if (vFuncionario[0] == null)
-			System.out.println("Cadastro vazio.");
 		for (int k = 0; k < vFuncionario.length; k++) {
 			if (vFuncionario[k] != null)
 				System.out.println(vFuncionario[k].mostraFuncionario());
@@ -88,7 +86,7 @@ public class Principal {
 
 	private static void listaFuncionarioCresc() {
 		Funcionario[] copiaListaFunc = new Funcionario[tamanho];
-		if (vFuncionario[0] == null)
+		if (vFuncionario == null)
 			System.out.println("Cadastro vazio.");
 		
 		for (int i = 0; i < vFuncionario.length; i++) {
